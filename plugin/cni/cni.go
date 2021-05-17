@@ -87,6 +87,12 @@ func getDefaultRouteInterfaceName() (string, error) {
 	return "", fmt.Errorf("no default route interface found")
 }
 func cmdAdd(args *skel.CmdArgs) error {
+	//1,获取配置信息
+	//2,获取namespace
+	//3,生成ipvlan配置信息
+	//4,配置ipvlan
+	//5,veth pair一端放入容器，一端配置到主机namespace，解决ipvaln与主机不能互通问题
+	//6,配置路由信息
 	n, cniVersion, err := loadConf(args.StdinData, false)
 	if err != nil {
 		return err
